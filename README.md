@@ -76,10 +76,11 @@ Typical usage chains the components: run the port scanner, pass results to the v
 
 ---
 
-# Architecture and Quality
+# Architecture and Diagrams
 
 The design complies with the security architecture principles of defence-in-depth by performing various checks, separation of concerns (scanning versus analysis), and robust operation logging for transparency. I leveraged Python's built-in modules for concurrency, data management (JSON), and networking (`socket`, `http.server`), as well as linting for improving the code's quality. The way it operates embraces both NIST and OWASP guidelines where feasible.
 
+## Architecture (component + deployment emphasis)
 Containers, reference databases, artefact sinks, and safety controls have been highlighted as components. For the purpose of making traceability clear, additionally it annotates the interactions with data types.
 
 <img width="14727" height="5658" alt="Arch" src="https://github.com/user-attachments/assets/b2cb3da1-ea07-4f13-b15d-1bef94997514" />
@@ -111,6 +112,7 @@ To identify reflected input markers and unsigned firmware metadata, respectively
 
 ## Reporting  
 In `src/scanner/reporting.py`, `create_full_report()` and `generate_html_report()` normalise, followed by archiving the findings to `artifacts/full_report.json` and `artifacts/full_report.html`. The report calls `severity_from_score()` to convert computed_score to text severity.
+
 
 
 

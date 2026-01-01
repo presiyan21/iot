@@ -84,6 +84,12 @@ The design complies with the security architecture principles of defence-in-dept
 Containers, reference databases, artefact sinks, and safety controls have been highlighted as components. For the purpose of making traceability clear, additionally it annotates the interactions with data types.
 
 <img width="14727" height="5658" alt="Arch" src="https://github.com/user-attachments/assets/b2cb3da1-ea07-4f13-b15d-1bef94997514" />
+
+## Data Flow (data artifacts, evidence provenance, and control paths)
+The payloads (banners, config JSON, firmware metadata, followed by pentest evidence) are referred to within this data-orientated diagram, coupled with their characteristic enrichment and scoring, in addition to persistence. Furthermore, it points to the introduction of confidence values.
+
+<img width="12133" height="2527" alt="data" src="https://github.com/user-attachments/assets/3a98a1a8-c984-44c6-8c09-7e258ea26287" />
+
 ---
 
 # Security Testing
@@ -112,6 +118,7 @@ To identify reflected input markers and unsigned firmware metadata, respectively
 
 ## Reporting  
 In `src/scanner/reporting.py`, `create_full_report()` and `generate_html_report()` normalise, followed by archiving the findings to `artifacts/full_report.json` and `artifacts/full_report.html`. The report calls `severity_from_score()` to convert computed_score to text severity.
+
 
 
 

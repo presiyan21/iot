@@ -90,11 +90,8 @@ The payloads (banners, config JSON, firmware metadata, followed by pentest evide
 
 <img width="12133" height="2527" alt="data" src="https://github.com/user-attachments/assets/3a98a1a8-c984-44c6-8c09-7e258ea26287" />
 
-<svg id="export-svg" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width: 3315px; background: rgb(255, 255, 255);" viewBox="-50 -10 3315 1649" role="graphics-document document" aria-roledescription="sequence"><style xmlns="http://www.w3.org/1999/xhtml">/* Copyright 2019 The Recursive Project Authors (github.com/arrowtype/recursive)
+<img width="16575" height="8245" alt="Sequence diagram" src="https://github.com/user-attachments/assets/f7f3dfd4-cb9e-4a77-97ac-b8f73a857700" />
 
-This Font Software is licensed under the SIL Open Font License, Version 1.1.
-This license is copied below, and is also available with a FAQ at:
-http://scripts.sil.org/OFL
 
 
 -----------------------------------------------------------
@@ -222,6 +219,7 @@ To identify reflected input markers and unsigned firmware metadata, respectively
 
 ## Reporting  
 In `src/scanner/reporting.py`, `create_full_report()` and `generate_html_report()` normalise, followed by archiving the findings to `artifacts/full_report.json` and `artifacts/full_report.html`. The report calls `severity_from_score()` to convert computed_score to text severity.
+
 
 
 

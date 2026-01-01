@@ -15,7 +15,7 @@ Standards like NIST’s IoT Cybersecurity guidance emphasise that securing IoT r
 
 | Phase | Timeframe | Objectives | Key Activities | Deliverables | Validation & Evidence |
 |------|-----------|------------|----------------|--------------|----------------------|
-| Project Initiation & Scope Definition | 09 Oct – 15 Oct 2025 | Define problem space, constraints, and success criteria | Identified common IoT security failures (weak credentials, insecure services, unsigned firmware). Defined ethical and safety constraints (local-only testing, non-destructive scans). Finalised core feature set. | Project scope definition, feature list, ethical constraints | Initial project notes; documented assumptions referenced later in reflection |
+| Project Initiation & Scope Definition | 09 Oct – 15 Oct 2025 | Define problem, constraints, and success criteria | Identified common IoT security failures (weak credentials, insecure services, unsigned firmware). Defined ethical and safety constraints (local-only testing, non-destructive scans). Finalised core feature set. | Project scope definition, feature list, ethical constraints | Initial project notes; documented assumptions referenced later in reflection |
 | Architecture Design & Tool Selection | 16 Oct – 22 Oct 2025 | Design modular architecture and select appropriate techniques | Designed scanner/auditor/pentest module separation. Chose TCP connect scanning, banner grabbing, JSON-based vulnerability DB, and hash-based firmware checks for feasibility. | High-level architecture plan; module breakdown | Directory structure in src/ reflects planned architecture |
 | Network Discovery & Fingerprinting | 23 Oct – 29 Oct 2025 | Implement safe and efficient service discovery | Developed concurrent port scanner with timeouts and capped thread pool. Implemented basic banner grabbing and HTTP probing. Added safeguards to prevent scanning non-private hosts. | port_scanner.py, iot_fingerprint.py | Successful local scans; unit tests for open/closed port detection |
 | Vulnerability Correlation Engine | 30 Oct – 06 Nov 2025 | Map discovered services to known vulnerabilities | Designed lightweight vulnerability schema. Implemented signature and port-based matching logic. Prioritised explainable results over exhaustive CVE coverage. | vuln_scanner.py, known_vulnerabilities.json | Findings visible in generated reports |
@@ -108,5 +108,6 @@ To identify reflected input markers and unsigned firmware metadata, respectively
 
 ## Reporting  
 In `src/scanner/reporting.py`, `create_full_report()` and `generate_html_report()` normalise, followed by archiving the findings to `artifacts/full_report.json` and `artifacts/full_report.html`. The report calls `severity_from_score()` to convert computed_score to text severity.
+
 
 

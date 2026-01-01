@@ -90,53 +90,6 @@ The payloads (banners, config JSON, firmware metadata, followed by pentest evide
 
 <img width="12133" height="2527" alt="data" src="https://github.com/user-attachments/assets/3a98a1a8-c984-44c6-8c09-7e258ea26287" />
 
-sequenceDiagram
-  autonumber
-  participant User
-  participant Main as src/main.py
-  participant Logger as src/utils/logger.py
-  participant Guard as SecurityGuard
-  participant Scanner as PortScanner
-  participant Vuln as VulnMatcher
-  participant FP as Fingerprinter
-  participant Auditor as ConfigAuditor
-  participant Firmware as FirmwareChecker
-  participant Pentest as PentestSims
-  participant Reporter as Reporter
-  participant Artifact as artifacts/full_report.json
-
-  User->>Main: run_full_audit("127.0.0.1", ports=[22,80,8080])
-  Main->>Logger: log(event: audit_started)
-  Main->>Guard: check(ALLOWED_HOSTS, is_private_host)
-  alt Host not allowed
-    Guard-->>Main: reject
-    Main->>Logger: log(event: audit_aborted, reason: not_allowed)
-    Main-->>User: return error
-  else Host allowed
-    Guard-->>Main: ok
-    Main->>Scanner: scan_ports(target, ports)
-    Scanner-->>Main: [{port,open,banner},...]
-    Main->>Vuln: match_vulns_to_scan(scan_results, known_vulns)
-    Vuln-->>Main: vuln_matches (vendor, vuls, score, confidence)
-    Main->>Logger: log(event: vuln_matching, matches: N)
-    alt open http port found
-      Main->>FP: fingerprint_http_target(base_url)
-      FP-->>Main: fingerprint (headers, body_snippet, favicon_hash)
-      Main->>Auditor: GET /config.json
-      Auditor-->>Main: audits[]
-      Auditor->>Firmware: check_firmware_hash(fw_info)
-      Firmware-->>Auditor: fw_result
-    else no http port
-      Main->>Logger: log(event: info, note: no_http_port)
-    end
-    Main->>Pentest: run pentest_simulations(base_url)
-    Pentest-->>Main: pentest_results[]
-    Main->>Reporter: create_full_report(target, scan_results, vuln_matches, fingerprint, audits, pentest_results)
-    Reporter-->>Artifact: atomic write(full_report.json)
-    Reporter-->>Main: report
-    Main->>Logger: log(event: report_written, path: artifacts/full_report.json)
-    Main-->>User: return report JSON
-  end
 
 
 ---
@@ -167,6 +120,7 @@ To identify reflected input markers and unsigned firmware metadata, respectively
 
 ## Reporting  
 In `src/scanner/reporting.py`, `create_full_report()` and `generate_html_report()` normalise, followed by archiving the findings to `artifacts/full_report.json` and `artifacts/full_report.html`. The report calls `severity_from_score()` to convert computed_score to text severity.
+
 
 
 

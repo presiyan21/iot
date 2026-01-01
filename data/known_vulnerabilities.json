@@ -1,0 +1,37 @@
+{
+  "GenericEmbeddedServer": {
+    "ports": [80, 8080],
+    "signatures": ["lighttpd", "boa", "embedded"],
+    "vulnerabilities": [
+      {"id": "CVE-XXXX-0001", "desc": "Path traversal in embedded web server"},
+      {"id": "CVE-XXXX-0002", "desc": "Reflected XSS due to unsanitized input"}
+    ],
+    "confidence": "medium"
+  },
+  "MQTTBroker_Mosquitto": {
+    "ports": [1883, 8883],
+    "signatures": ["mosquitto", "mqtt"],
+    "vulnerabilities": [
+      {"id": "CVE-YYYY-1111", "desc": "Unauthenticated publish vulnerability"},
+      {"id": "CVE-YYYY-2222", "desc": "Memory leak under high load"}
+    ],
+    "confidence": "low"
+  },
+  "AcmeIoTRouter": {
+    "ports": [80, 443, 8080],
+    "signatures": ["acme-router", "openwrt", "luci"],
+    "vulnerabilities": [
+      {"id": "CVE-ACME-0001", "desc": "Default password bypass on web interface"},
+      {"id": "CVE-ACME-0002", "desc": "Outdated OpenSSL version vulnerable to Heartbleed"}
+    ],
+    "confidence": "high"
+  },
+  "Globex_SensorHub": {
+    "ports": [8000],
+    "signatures": ["globex-hub", "embedded"],
+    "vulnerabilities": [
+      {"id": "CVE-GLOBEX-1001", "desc": "Buffer overflow in telemetry endpoint"}
+    ],
+    "confidence": "medium"
+  }
+}

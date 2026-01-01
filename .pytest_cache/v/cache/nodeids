@@ -1,0 +1,12 @@
+[
+  "tests/auditor_test.py::test_check_firmware_hash_mismatch",
+  "tests/auditor_test.py::test_check_firmware_hash_signed_and_unsigned",
+  "tests/auditor_test.py::test_load_firmware_db_and_checks",
+  "tests/auditor_test.py::test_load_firmware_db_exists",
+  "tests/port_scanner_test.py::test_scan_ports_localhost",
+  "tests/port_scanner_test.py::test_scan_ports_mixed_open_and_closed",
+  "tests/test_bruteforce_demo.py::test_bruteforce_finds_admin_and_stops",
+  "tests/test_exploit_sim.py::test_exploit_simulation",
+  "tests/test_exploit_sim.py::test_insecure_firmware_update_detection",
+  "tests/vuln_scanner_test.py::test_match_generic_embedded_server"
+]

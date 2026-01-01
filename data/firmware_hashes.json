@@ -1,0 +1,38 @@
+{
+  "AcmeCorp": {
+    "1.0.0": {
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "signed": false,
+      "notes": "Unsigned demo firmware for testing"
+    },
+    "1.0.1": {
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "signed": true,
+      "notes": "Patched release with signature support"
+    },
+    "1.1.0-beta": {
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "signed": false,
+      "notes": "Beta firmware, not recommended for production"
+    }
+  },
+  "Contoso": {
+    "2.3.4": {
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "signed": true,
+      "notes": "Stable vendor firmware"
+    },
+    "2.4.0": {
+      "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "signed": true,
+      "notes": "Security update with new features"
+    }
+  },
+  "Globex": {
+    "0.9.1": {
+      "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "signed": false,
+      "notes": "Pre-release demo firmware"
+    }
+  }
+}

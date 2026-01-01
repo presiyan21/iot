@@ -1,0 +1,362 @@
+{
+  "metadata": {
+    "target": "127.0.0.1",
+    "generated_at": 1767276875,
+    "generated_iso": "2026-01-01T14:14:35+00:00",
+    "tool": "IOT-Scanner",
+    "tool_version": "0.1.0",
+    "platform": "Windows-11-10.0.26100-SP0",
+    "python_version": "3.12.4"
+  },
+  "summary": {
+    "severity_counts": {
+      "critical": 1,
+      "high": 0,
+      "medium": 1,
+      "low": 0
+    },
+    "top_risks": [
+      {
+        "vendor": "AcmeIoTRouter",
+        "port": 8080,
+        "banner": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026 14:14:34 GMT\r\nConnection: close\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: 357",
+        "vulns": [
+          {
+            "id": "CVE-ACME-0001",
+            "desc": "Default password bypass on web interface"
+          },
+          {
+            "id": "CVE-ACME-0002",
+            "desc": "Outdated OpenSSL version vulnerable to Heartbleed"
+          }
+        ],
+        "confidence": "high",
+        "score": 3.0,
+        "evidence": {
+          "matched_on": "port",
+          "signature": "",
+          "method": "",
+          "snippet": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026"
+        },
+        "computed_score": 9.0,
+        "severity": "critical",
+        "remediation": [
+          "Review finding and apply vendor-recommended mitigations."
+        ]
+      },
+      {
+        "vendor": "GenericEmbeddedServer",
+        "port": 8080,
+        "banner": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026 14:14:34 GMT\r\nConnection: close\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: 357",
+        "vulns": [
+          {
+            "id": "CVE-XXXX-0001",
+            "desc": "Path traversal in embedded web server"
+          },
+          {
+            "id": "CVE-XXXX-0002",
+            "desc": "Reflected XSS due to unsanitized input"
+          }
+        ],
+        "confidence": "medium",
+        "score": 2.0,
+        "evidence": {
+          "matched_on": "port",
+          "signature": "",
+          "method": "",
+          "snippet": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026"
+        },
+        "computed_score": 6.5,
+        "severity": "medium",
+        "remediation": [
+          "Review finding and apply vendor-recommended mitigations."
+        ]
+      }
+    ],
+    "pentest": {
+      "tests_run": 3,
+      "successful": 1,
+      "high_confidence": 1,
+      "details": [
+        {
+          "test": "reflected_xss",
+          "success": false,
+          "confidence": 0.1
+        },
+        {
+          "test": "insecure_update",
+          "success": true,
+          "confidence": 0.85
+        },
+        {
+          "test": "brute_force_login",
+          "success": false,
+          "confidence": 0.0
+        }
+      ]
+    },
+    "audits": {
+      "total": 5,
+      "high": 4,
+      "medium": 1,
+      "low": 0,
+      "ids": [
+        "CFG-001",
+        "CFG-002",
+        "CFG-003",
+        "CFG-004",
+        "FW-001"
+      ]
+    }
+  },
+  "port_scan": [
+    {
+      "port": 22,
+      "open": false,
+      "banner": "",
+      "risk": "medium",
+      "latency": 1.015
+    },
+    {
+      "port": 23,
+      "open": false,
+      "banner": "",
+      "risk": "high",
+      "latency": 1.031
+    },
+    {
+      "port": 80,
+      "open": false,
+      "banner": "",
+      "risk": "low",
+      "latency": 1.01
+    },
+    {
+      "port": 8080,
+      "open": true,
+      "banner": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026 14:14:34 GMT\r\nConnection: close\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: 357",
+      "risk": "low",
+      "latency": 0.51
+    }
+  ],
+  "vuln_matches": [
+    {
+      "vendor": "AcmeIoTRouter",
+      "port": 8080,
+      "banner": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026 14:14:34 GMT\r\nConnection: close\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: 357",
+      "vulns": [
+        {
+          "id": "CVE-ACME-0001",
+          "desc": "Default password bypass on web interface"
+        },
+        {
+          "id": "CVE-ACME-0002",
+          "desc": "Outdated OpenSSL version vulnerable to Heartbleed"
+        }
+      ],
+      "confidence": "high",
+      "score": 3.0,
+      "evidence": {
+        "matched_on": "port",
+        "signature": "",
+        "method": "",
+        "snippet": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026"
+      },
+      "computed_score": 9.0,
+      "severity": "critical",
+      "remediation": [
+        "Review finding and apply vendor-recommended mitigations."
+      ]
+    },
+    {
+      "vendor": "GenericEmbeddedServer",
+      "port": 8080,
+      "banner": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026 14:14:34 GMT\r\nConnection: close\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: 357",
+      "vulns": [
+        {
+          "id": "CVE-XXXX-0001",
+          "desc": "Path traversal in embedded web server"
+        },
+        {
+          "id": "CVE-XXXX-0002",
+          "desc": "Reflected XSS due to unsanitized input"
+        }
+      ],
+      "confidence": "medium",
+      "score": 2.0,
+      "evidence": {
+        "matched_on": "port",
+        "signature": "",
+        "method": "",
+        "snippet": "HTTP/1.0 501 Unsupported method ('HEAD')\r\nServer: BaseHTTP/0.6 Python/3.12.4\r\nDate: Thu, 01 Jan 2026"
+      },
+      "computed_score": 6.5,
+      "severity": "medium",
+      "remediation": [
+        "Review finding and apply vendor-recommended mitigations."
+      ]
+    }
+  ],
+  "fingerprint": {
+    "url": "http://127.0.0.1:8080",
+    "status": 404,
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.4",
+      "Date": "Thu, 01 Jan 2026 14:14:34 GMT"
+    },
+    "server": "BaseHTTP/0.6 Python/3.12.4",
+    "body_snippet": "",
+    "redirects": [],
+    "banner": "",
+    "device_type": "unknown",
+    "favicon_hash": null
+  },
+  "audits": [
+    {
+      "id": "CFG-001",
+      "issue": "Telnet enabled",
+      "severity": "high",
+      "impact": "major",
+      "score": 7.0,
+      "detail": "Telnet is enabled; use SSH or disable.",
+      "evidence": {
+        "source": "config",
+        "field": "telnet"
+      },
+      "remediation": [
+        "Disable Telnet; enable SSH with strong auth."
+      ]
+    },
+    {
+      "id": "CFG-002",
+      "issue": "Admin interface over HTTP",
+      "severity": "high",
+      "impact": "major",
+      "score": 7.0,
+      "detail": "Admin interface accessible without TLS.",
+      "evidence": {
+        "source": "config",
+        "field": "admin_http"
+      },
+      "remediation": [
+        "Enable HTTPS for admin interface; use valid certs."
+      ]
+    },
+    {
+      "id": "CFG-003",
+      "issue": "Debug enabled",
+      "severity": "medium",
+      "impact": "moderate",
+      "score": 4.0,
+      "detail": "Debug mode may leak internal info.",
+      "evidence": {
+        "source": "config",
+        "field": "debug"
+      },
+      "remediation": [
+        "Turn off debug mode in production."
+      ]
+    },
+    {
+      "id": "CFG-004",
+      "issue": "Telnet port open",
+      "severity": "high",
+      "impact": "major",
+      "score": 7.0,
+      "detail": "Telnet ports are exposed in configuration.",
+      "evidence": {
+        "source": "config",
+        "field": "open_ports",
+        "ports": [
+          23,
+          8080
+        ]
+      },
+      "remediation": [
+        "Close Telnet ports; filter traffic or require auth."
+      ]
+    },
+    {
+      "id": "FW-001",
+      "issue": "Firmware integrity not verified",
+      "severity": "high",
+      "impact": "major",
+      "score": 7.0,
+      "detail": "Firmware integrity check reported: matched_unsigned",
+      "evidence": {
+        "method": "db_scan",
+        "match_details": {
+          "match": true,
+          "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "actual": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "signed": false
+      },
+      "remediation": [
+        "Require signed firmware before deployment."
+      ]
+    }
+  ],
+  "pentest_simulations": [
+    {
+      "target": "http://127.0.0.1:8080/search",
+      "test": "reflected_xss",
+      "status": 200,
+      "success": false,
+      "confidence": 0.1,
+      "evidence": {
+        "param": "q",
+        "marker": "<LABMARKER>",
+        "content_type": "text/html",
+        "snippet": ""
+      },
+      "time_ms": 3.8
+    },
+    {
+      "target": "http://127.0.0.1:8080",
+      "test": "insecure_update",
+      "status": 200,
+      "success": true,
+      "confidence": 0.85,
+      "evidence": {
+        "json_summary": {
+          "latest": "1.0.1",
+          "signed": false
+        },
+        "body_len": 36,
+        "issue": "unsigned_firmware_advertised"
+      },
+      "time_ms": 2.9
+    },
+    {
+      "target": "http://127.0.0.1:8080/login",
+      "test": "brute_force_login",
+      "attempts_count": 1,
+      "success_count": 1,
+      "stopped_early": true,
+      "duration_ms": 27.7,
+      "attempts": [
+        {
+          "attempt": 1,
+          "password": "admin",
+          "status": 200,
+          "success": true,
+          "confidence": 0.9,
+          "time_ms": 27.7,
+          "note": ""
+        }
+      ],
+      "successes": [
+        {
+          "attempt": 1,
+          "password": "admin",
+          "status": 200,
+          "success": true,
+          "confidence": 0.9,
+          "time_ms": 27.7,
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

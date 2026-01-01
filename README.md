@@ -24,7 +24,7 @@ Standards like NIST’s IoT Cybersecurity guidance emphasise that securing IoT r
 | Safe Pentesting Simulations | 21 Nov – 28 Nov 2025 | Simulate common attack vectors without device damage | Developed reflected XSS detection, insecure update metadata checks, and rate-limited brute-force simulation restricted to localhost. | pentesting/ modules | Tests confirm detection without destructive behaviour |
 | Reporting & Evidence Generation | 29 Nov – 05 Dec 2025 | Produce audit-ready outputs | Implemented structured JSON report with severity scoring. Added atomic file writes and NDJSON run logging for traceability. | full_report.json, run_log.ndjson | Timestamped artifacts generated consistently |
 | Testing, Refinement & Validation | 06 Dec – 21 Dec 2025 | Validate correctness and reliability | Wrote unit and integration tests. Refined scoring weights and report clarity. Verified reproducibility of results. | tests/ directory, final artifacts | All tests pass; consistent output across runs |
-| Final Review & Documentation | 22 Dec – 31 Dec 2025 | Prepare submission-ready deliverable | Finalised logbook, reflections, limitations, and future work. Ensured alignment with marking criteria and industry terminology. | Completed logbook and appendices |  |
+| Final Review & Documentation | 22 Dec – 31 Dec 2025 | Prepare submission-ready deliverable | Finalised logbook, reflections, limitations, and future work. Ensured alignment with marking criteria and industry terminology. | Completed logbook and appendices | Deliverable |
 
 ---
 
@@ -131,6 +131,7 @@ The most noteworthy security findings delivered from the toolkit are presented i
 | F-003 | Legacy remote access exposed — Telnet enabled | Config & open ports (telnet: true; ports: 23, 8080) | High — 7.0 | artifacts/full_report.json → audits CFG-001 / CFG-004 (open_ports includes 23) | Run full audit (`python -m src.main`) and confirm CFG-001 / port 23 in port_scan | Priority 2: Disable Telnet; enable SSH with keys; block Telnet at firewall / segment networks. |
 | F-004 | Admin interface over plaintext HTTP | Admin UI (admin_http: true) | High — 7.0 | audits CFG-002 shows admin_http: true in demo config | Confirm via `GET /config.json` from demo device | Priority 1–2: Serve admin over TLS with valid certs, enable HSTS, and enforce strong session/auth controls. |
 | F-005 | Unsigned / unverified firmware | Firmware metadata returned as unsigned (matched_unsigned) | High — 7.0 | firmware_checker result (FW-001) and data/firmware_hashes.json match | Fetch `/.well-known/firmware` from demo and run `check_firmware_hash()` against DB | Priority 1: Require signed updates, implement signature verification and anti-rollback protections. |
+
 
 
 

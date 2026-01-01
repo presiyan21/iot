@@ -11,6 +11,23 @@ Standards like NIST’s IoT Cybersecurity guidance emphasise that securing IoT r
 
 ---
 
+# Project Milestones and Deliverables Table
+
+| Phase | Timeframe | Objectives | Key Activities | Deliverables | Validation & Evidence |
+|------|-----------|------------|----------------|--------------|----------------------|
+| Project Initiation & Scope Definition | 01 Oct – 05 Oct 2025 | Define problem space, constraints, and success criteria | Identified common IoT security failures (weak credentials, insecure services, unsigned firmware). Defined ethical and safety constraints (local-only testing, non-destructive scans). Finalised core feature set. | Project scope definition, feature list, ethical constraints | Initial project notes; documented assumptions referenced later in reflection |
+| Architecture Design & Tool Selection | 06 Oct – 12 Oct 2025 | Design modular architecture and select appropriate techniques | Designed scanner/auditor/pentest module separation. Chose TCP connect scanning, banner grabbing, JSON-based vulnerability DB, and hash-based firmware checks for feasibility. | High-level architecture plan; module breakdown | Directory structure in src/ reflects planned architecture |
+| Network Discovery & Fingerprinting | 13 Oct – 18 Oct 2025 | Implement safe and efficient service discovery | Developed concurrent port scanner with timeouts and capped thread pool. Implemented basic banner grabbing and HTTP probing. Added safeguards to prevent scanning non-private hosts. | port_scanner.py, iot_fingerprint.py | Successful local scans; unit tests for open/closed port detection |
+| Vulnerability Correlation Engine | 19 Oct – 05 Nov 2025 | Map discovered services to known vulnerabilities | Designed lightweight vulnerability schema. Implemented signature and port-based matching logic. Prioritised explainable results over exhaustive CVE coverage. | vuln_scanner.py, known_vulnerabilities.json | Findings visible in generated reports |
+| Configuration & Policy Auditing | 06 Nov – 15 Nov 2025 | Detect insecure configuration patterns | Implemented configuration checks (Telnet enabled, admin HTTP access, debug flags). Created password policy checks for weak/default credentials. | config_auditor.py, password_policy.py | Issues correctly flagged in demo device scans |
+| Firmware Integrity Verification | 16 Nov – 20 Nov 2025 | Assess firmware authenticity and update security | Implemented hash-based firmware verification and unsigned firmware detection. Documented limitations compared to signature-based verification. | firmware_checker.py, firmware_hashes.json | Firmware-related findings (FW-001) in report |
+| Safe Pentesting Simulations | 21 Nov – 28 Nov 2025 | Simulate common attack vectors without device damage | Developed reflected XSS detection, insecure update metadata checks, and rate-limited brute-force simulation restricted to localhost. | pentesting/ modules | Tests confirm detection without destructive behaviour |
+| Reporting & Evidence Generation | 29 Nov – 05 Dec 2025 | Produce audit-ready outputs | Implemented structured JSON report with severity scoring. Added atomic file writes and NDJSON run logging for traceability. | full_report.json, run_log.ndjson | Timestamped artifacts generated consistently |
+| Testing, Refinement & Validation | 06 Dec – 21 Dec 2025 | Validate correctness and reliability | Wrote unit and integration tests. Refined scoring weights and report clarity. Verified reproducibility of results. | tests/ directory, final artifacts | All tests pass; consistent output across runs |
+| Final Review & Documentation | 22 Dec – 31 Dec 2025 | Prepare submission-ready deliverable | Finalised logbook, reflections, limitations, and future work. Ensured alignment with marking criteria and industry terminology. | Completed logbook and appendices |  |
+
+---
+
 # Needs Analysis and Research
 
 **Identify Vulnerabilities:**  
@@ -91,3 +108,4 @@ To identify reflected input markers and unsigned firmware metadata, respectively
 
 ## Reporting  
 In `src/scanner/reporting.py`, `create_full_report()` and `generate_html_report()` normalise, followed by archiving the findings to `artifacts/full_report.json` and `artifacts/full_report.html`. The report calls `severity_from_score()` to convert computed_score to text severity.
+

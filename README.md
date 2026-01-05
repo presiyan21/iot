@@ -1,13 +1,13 @@
 # Security context
 
 **IoT Environment:**  
-My proposed IoT Toolkit was developed to support organisations infrastructure and the deployment of Internet of Things devices (popular examples include smart home appliances, industrial sensors, or medical devices). Almost 100% of them communicate over networks and may control critical operations. As noted by recent research, IoT applications are now integral to a significant percentage of critical sectors like healthcare and transportation, meaning breaches can have severe consequences and catastrophic impacts. In this context, security lapses can compromise personal data, service availability, or even physical safety.
+My proposed IoT Toolkit was developed to support organisations infrastructure and the deployment of Internet of Things devices (popular examples include smart home appliances, industrial sensors, or medical devices). Almost 100% of them communicate over networks and may control critical operations. As noted by recent research, IoT applications are now integral to a significant percentage of critical sectors like healthcare and transportation (Al-Turjman et al., 2025), meaning breaches can have severe consequences and catastrophic impacts. In this context, security lapses can compromise personal data, service availability, or even physical safety.
 
 **Threat Landscape:**  
-IoT devices notably lack rigorous security controls. Industry sources report a surge in cybercrime targeting IoT, owing to easily exploited flaws like weak authentication, unencrypted services, and poor update mechanisms permitting breaches to be easily systemically configured. For example, OWASP’s IoT Top 10 identifies weak credentials (I1) and insecure network services (I2) as top risks. The vast majority of attackers tend to exploit these to gain unauthorised access, launch attacks, or pivot into internal networks. The business setting might be a manufacturing plant using connected sensors or a smart office with networked cameras, implying that in all cases, exposing a vulnerability could lead to data theft or downtime.
+IoT devices notably lack rigorous security controls. Industry sources report a surge in cybercrime targeting IoT, owing to easily exploited flaws like weak authentication, unencrypted services, and poor update mechanisms permitting breaches to be easily systemically configured (Al-Turjman et al., 2025),(Portnox, 2023). For example, OWASP’s IoT Top 10 identifies weak credentials (I1) and insecure network services (I2) as top risks (OWASP, 2023). The vast majority of attackers tend to exploit these to gain unauthorised access, launch attacks, or pivot into internal networks. The business setting might be a manufacturing plant using connected sensors or a smart office with networked cameras, implying that in all cases, exposing a vulnerability could lead to data theft or downtime.
 
 **Regulatory and Standards Considerations:**  
-Standards like NIST’s IoT Cybersecurity guidance emphasise that securing IoT requires specialised tools and processes. Similarly, compliance frameworks (e.g., the EU Cybersecurity Act) mandate that connected devices undergo security evaluation. Thus, the organisational need is a systematic way to assess device security posture before deployment. During my endeavour of developing the toolkit, I will opt to address these challenges by providing automated checks aligned with such standards (e.g., verifying firmware integrity, scanning for known vulnerabilities) to help meet compliance and reduce risk.
+Standards like NIST’s IoT Cybersecurity guidance emphasise that securing IoT requires specialised tools and processes (NIST, 2025). Similarly, compliance frameworks (e.g., the EU Cybersecurity Act) mandate that connected devices undergo security evaluation. Thus, the organisational need is a systematic way to assess device security posture before deployment. During my endeavour of developing the toolkit, I will opt to address these challenges by providing automated checks aligned with such standards (e.g., verifying firmware integrity, scanning for known vulnerabilities) to help meet compliance and reduce risk.
 
 ---
 
@@ -49,7 +49,7 @@ I only run non-destructive and permission-bound tests. My tooling simulates atta
 Results have to be useful. Findings as clear lists (open ports, banners, matched CVEs, and identified weaknesses) plus practical remediation steps so engineers and managers can act. The output includes a risk priority and an explanation of why each issue matters, not just a raw scan dump.
 
 **Justification against industry frameworks:**  
-These requirements aren’t arbitrary — they map directly to OWASP IoT and NIST guidance, which emphasise verifying credentials, services, and update mechanisms. By focusing on these checks, I ensure basic IoT hygiene and give teams actionable insight to reduce risk before deployment.
+These requirements aren’t arbitrary — they map directly to OWASP IoT and NIST guidance, which emphasise verifying credentials, services, and update mechanisms (OWASP, 2023), (IoT Security Foundation, 2021). By focusing on these checks, I ensure basic IoT hygiene and give teams actionable insight to reduce risk before deployment.
 
 ---
 
@@ -131,6 +131,7 @@ The most noteworthy security findings delivered from the toolkit are presented i
 | F-003 | Legacy remote access exposed — Telnet enabled | Config & open ports (telnet: true; ports: 23, 8080) | High — 7.0 | artifacts/full_report.json → audits CFG-001 / CFG-004 (open_ports includes 23) | Run full audit (`python -m src.main`) and confirm CFG-001 / port 23 in port_scan | Priority 2: Disable Telnet; enable SSH with keys; block Telnet at firewall / segment networks. |
 | F-004 | Admin interface over plaintext HTTP | Admin UI (admin_http: true) | High — 7.0 | audits CFG-002 shows admin_http: true in demo config | Confirm via `GET /config.json` from demo device | Priority 1–2: Serve admin over TLS with valid certs, enable HSTS, and enforce strong session/auth controls. |
 | F-005 | Unsigned / unverified firmware | Firmware metadata returned as unsigned (matched_unsigned) | High — 7.0 | firmware_checker result (FW-001) and data/firmware_hashes.json match | Fetch `/.well-known/firmware` from demo and run `check_firmware_hash()` against DB | Priority 1: Require signed updates, implement signature verification and anti-rollback protections. |
+
 
 
 
